@@ -8,7 +8,10 @@ time_table_drop = "DROP TABLE IF EXISTS time;"
 
 # CREATE TABLES
 
-songplay_table_create = ("""CREATE TABLE songplays (songplay_id SERIAL PRIMARY KEY, start_time bigint NOT NULL, user_id int NOT NULL, level text, song_id text, artist_id text, session_id int NOT NULL, location text, user_agent text);""")
+songplay_table_create = ("""CREATE TABLE songplays (songplay_id SERIAL PRIMARY KEY, start_time bigint NOT NULL, user_id int NOT NULL, level text, song_id text, artist_id text, session_id int NOT NULL, location text, user_agent text,
+FOREIGN KEY (user_id) REFERENCES users(user_id),
+FOREIGN KEY (artist_id) REFERENCES artists(artist_id),
+FOREIGN KEY (song_id) REFERENCES songs(song_id));""")
 
 user_table_create = ("""CREATE TABLE users (user_id int PRIMARY KEY, first_name text, last_name text, gender char, level text);""")
 
@@ -42,5 +45,5 @@ song_select = ("""SELECT s.song_id, s.artist_id FROM songs s JOIN artists a ON s
 
 # QUERY LISTS
 
-create_table_queries = [songplay_table_create, user_table_create, song_table_create, artist_table_create, time_table_create]
-drop_table_queries = [songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]
+create_table_queries = [user_table_create, artist_table_create, song_table_create,  time_table_create, songplay_table_create]
+drop_table_queries = [user_table_drop, artist_table_drop, song_table_drop, time_table_drop, songplay_table_drop]
