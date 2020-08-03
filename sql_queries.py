@@ -8,13 +8,13 @@ time_table_drop = "DROP TABLE IF EXISTS time;"
 
 # CREATE TABLES
 
-songplay_table_create = ("""CREATE TABLE songplays (songplay_id SERIAL PRIMARY KEY, start_time bigint, user_id int, level text, song_id text, artist_id text, session_id int, location text, user_agent text);""")
+songplay_table_create = ("""CREATE TABLE songplays (songplay_id SERIAL PRIMARY KEY, start_time bigint NOT NULL, user_id int NOT NULL, level text, song_id text, artist_id text, session_id int NOT NULL, location text, user_agent text);""")
 
 user_table_create = ("""CREATE TABLE users (user_id int PRIMARY KEY, first_name text, last_name text, gender char, level text);""")
 
-song_table_create = ("""CREATE TABLE songs (song_id text PRIMARY KEY, title text, artist_id text, year int, duration numeric);""")
+song_table_create = ("""CREATE TABLE songs (song_id text PRIMARY KEY, title text NOT NULL, artist_id text NOT NULL, year int, duration numeric);""")
 
-artist_table_create = ("""CREATE TABLE artists (artist_id text PRIMARY KEY, name text, location text, latitude numeric, longitude numeric);""")
+artist_table_create = ("""CREATE TABLE artists (artist_id text PRIMARY KEY, name text NOT NULL, location text, latitude numeric, longitude numeric);""")
 
 time_table_create = ("""CREATE TABLE time (start_time timestamp PRIMARY KEY, hour int, day int, week int, month int, year int, weekday text);""")
 
